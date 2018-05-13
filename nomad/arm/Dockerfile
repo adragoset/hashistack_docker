@@ -14,7 +14,7 @@ RUN addgroup nomad && \
 
 RUN apk update
 
-RUN apk add git build-base musl-utils
+RUN apk add git build-base musl-utils autoconf
 
 RUN git clone https://github.com/NixOS/patchelf.git
 
