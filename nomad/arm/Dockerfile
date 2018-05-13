@@ -17,7 +17,6 @@ RUN set -eux && \
     apt-get install -y ca-certificates curl dumb-init gnupg libcap-dev openssl && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
-    apkArch="$(apk --print-arch)" && \
     wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_arm.zip && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_arm.zip && \
     cd /tmp && \
