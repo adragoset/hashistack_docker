@@ -11,7 +11,7 @@ ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 # the rest of this may change over time.
 RUN addgroup nomad && \
     useradd nomad && \
-    usermod -aG nomad nomad
+    usermod -g nomad nomad
 
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
