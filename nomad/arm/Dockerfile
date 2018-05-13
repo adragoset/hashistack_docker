@@ -42,7 +42,7 @@ RUN set -x \
     esac && \
     apk --update add --no-cache --virtual .nomad-deps gnupg curl && \
     curl -L -o nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
-    unzip -d /bin nomad_${NOMAD_VERSION}_linux_${consulArch}.zip && \
+    unzip -d /bin nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
   chmod +x /bin/nomad \
   && apk del .nomad-deps
 
