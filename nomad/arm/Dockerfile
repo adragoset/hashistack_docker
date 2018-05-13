@@ -14,11 +14,7 @@ RUN addgroup nomad && \
 
 RUN apk update
 
-RUN apk add git build-base musl-utils autoconf automake
-
-RUN git clone https://github.com/NixOS/patchelf.git
-
-RUN cd patchelf && ./bootstrap.sh && ./configure && make && make install && patchelf --add-needed /lib/ld-linux-armhf.so.3 
+RUN apk add git build-base qemu
 
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
