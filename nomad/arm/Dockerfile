@@ -33,6 +33,7 @@ RUN set -eux && \
     rm -rf /tmp/build && \
     apk del gnupg openssl && \
     rm -rf /root/.gnupg && \
+    chmod +x /bin/nomad && \
 # tiny smoke test to ensure the binary we downloaded runs
     nomad 
 
