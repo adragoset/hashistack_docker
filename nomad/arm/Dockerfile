@@ -48,7 +48,7 @@ VOLUME /nomad/data
 
 EXPOSE 4646 4647 4648 4648/udp
 
-ADD /docker_nomad/start.sh /usr/local/bin/start.sh
+ADD start.sh /usr/local/bin/start.sh
 
 RUN dos2unix /usr/local/bin/start.sh
 
