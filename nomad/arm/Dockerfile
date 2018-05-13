@@ -10,10 +10,11 @@ ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 # Create a nomad user and group first so the IDs get set the same way, even as
 # the rest of this may change over time.
 RUN adduser nomad
+
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
     apt-get update && \
-    apt-get install ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
+    apt-get install ca-certificates curl dumb-init gnupg libcap openssl && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     apkArch="$(apk --print-arch)" && \
@@ -25,6 +26,8 @@ RUN set -eux && \
     rm -rf /root/.gnupg && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
+
+RUN curl -fsSLR -o /usr/local/bin/su-exec https://github.com/javabean/su-exec/releases/download/v0.2/su-exec.$(dpkg --print-architecture | awk -F- '{ print $NF }')
 
 RUN nomad version
 
