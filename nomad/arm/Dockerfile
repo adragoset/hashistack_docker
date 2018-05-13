@@ -18,6 +18,8 @@ RUN apk add git build-base
 
 RUN ln -s /lib/ld-linux.so.3 /lib/ld-linux-armhf.so.3
 
+RUN cd /lib && ls
+
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
     apk add --no-cache ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
