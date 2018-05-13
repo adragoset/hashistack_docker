@@ -52,8 +52,6 @@ ADD /docker_nomad/start.sh /usr/local/bin/start.sh
 
 RUN dos2unix /usr/local/bin/start.sh
 
-ADD docker_nomad/version .
-
 RUN mkdir -p ~/.ssh
 
 RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
