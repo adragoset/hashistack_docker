@@ -31,6 +31,7 @@ RUN export GNUPGHOME="$(mktemp -d)" && \
 ENV NOMAD_VERSION 0.8.3
 
 RUN set -x \
+  apk add --no-cache ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
   && apk --update add --no-cache --virtual .nomad-deps gnupg curl \
   && cd /tmp \
   && apkArch="$(apk --print-arch)" && \
