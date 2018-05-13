@@ -1,4 +1,4 @@
-FROM arm32v7/debian:stretch-stretch-slim
+FROM arm32v7/debian:stretch-slim
 MAINTAINER Preetha Appan <preetha@hashicorp.com> (@preetapan)
 
 # This is the release of Nomad to pull in.
