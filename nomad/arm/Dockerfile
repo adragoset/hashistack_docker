@@ -31,7 +31,6 @@ RUN export GNUPGHOME="$(mktemp -d)" && \
 ENV NOMAD_VERSION 0.8.3
 
 RUN set -x \
-  apk --update add --no-cache --virtual .nomad-deps gnupg curl \
   && cd /tmp \
   && apkArch="$(apk --print-arch)" && \
       case "${apkArch}" in \
@@ -41,6 +40,7 @@ RUN set -x \
         x86_64) nomadArch='amd64' ;; \
         *) echo >&2 "error: unsupported architecture: ${apkArch} (see ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/)" && exit 1 ;; \
     esac && \
+    apk --update add --no-cache --virtual .nomad-deps gnupg curl && \
     curl -L -o nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_${consulArch}.zip && \
   chmod +x /bin/nomad \
