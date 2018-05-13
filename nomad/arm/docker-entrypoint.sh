@@ -61,7 +61,7 @@ if [ "$1" = 'agent' ]; then
     shift
     set -- nomad agent \
         -data-dir="$NOMAD_DATA_DIR" \
-        -config-dir="$NOMAD_CONFIG_DIR" \
+        -config="$NOMAD_CONFIG_DIR" \
         $NOMAD_BIND \
         $NOMAD_CLIENT \
         "$@"
