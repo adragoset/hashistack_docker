@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.7
+FROM arm32v7/debian:stretch-stretch-slim
 MAINTAINER Preetha Appan <preetha@hashicorp.com> (@preetapan)
 
 # This is the release of Nomad to pull in.
@@ -12,30 +12,17 @@ ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 RUN addgroup nomad && \
     adduser -S -G nomad nomad
 
-RUN apk update
-
-RUN apk add git build-base libc6-compat
-
-RUN cd /lib && ls
-
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
-    apk add --no-cache ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
+    apt-get install ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     apkArch="$(apk --print-arch)" && \
-    case "${apkArch}" in \
-        aarch64) nomadArch='arm64' ;; \
-        armhf) nomadArch='arm' ;; \
-        x86) nomadArch='386' ;; \
-        x86_64) nomadArch='amd64' ;; \
-        *) echo >&2 "error: unsupported architecture: ${apkArch} (see ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/)" && exit 1 ;; \
-    esac && \
-    wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
-    unzip -d /bin nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
+    wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_arm.zip && \
+    unzip -d /bin nomad_${NOMAD_VERSION}_linux_arm.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
-    apk del gnupg openssl && \
+    apt-get remove gnupg openssl && \
     rm -rf /root/.gnupg && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
