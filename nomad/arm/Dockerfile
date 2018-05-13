@@ -18,7 +18,7 @@ RUN apk add git build-base musl-utils autoconf automake
 
 RUN git clone https://github.com/NixOS/patchelf.git
 
-RUN cd patchelf && ./bootstrap.sh && ./configure && make && make install
+RUN cd patchelf && ./bootstrap.sh && ./configure && make && make install && patchelf --add-needed /lib/ld-linux-armhf.so.3 
 
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
@@ -43,7 +43,6 @@ RUN set -eux && \
 # tiny smoke test to ensure the binary we downloaded runs
 
 RUN apk add file
-RUN ldconfig -v
 RUN file /bin/nomad
 RUN ldd /bin/nomad
 RUN nomad version
