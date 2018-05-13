@@ -12,6 +12,7 @@ ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 RUN adduser nomad
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
+    apt-get update && \
     apt-get install ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
