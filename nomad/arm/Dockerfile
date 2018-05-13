@@ -10,7 +10,7 @@ ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 # Create a nomad user and group first so the IDs get set the same way, even as
 # the rest of this may change over time.
 RUN addgroup nomad && \
-    adduser -S -G nomad nomad
+    adduser nomad nomad
 
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
