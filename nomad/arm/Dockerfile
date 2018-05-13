@@ -21,7 +21,7 @@ RUN set -eux && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_arm.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
-    apt-get remove gnupg openssl && \
+    apt-get -y remove gnupg openssl && \
     rm -rf /root/.gnupg && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
