@@ -5,6 +5,7 @@ LABEL maintainer="DJ Enriquez <denrie.enriquezjr@gmail.com> (@djenriquez)"
 ENV GLIBC_VERSION "2.25-r0"
 ENV GOSU_VERSION 1.10
 ENV DUMB_INIT_VERSION 1.2.0
+ENV HASHICORP_RELEASES=https://releases.hashicorp.com
 
 RUN apk update
 
@@ -32,9 +33,17 @@ ENV NOMAD_VERSION 0.8.3
 RUN set -x \
   && apk --update add --no-cache --virtual .nomad-deps gnupg curl \
   && cd /tmp \
-  && curl -L -o nomad_${NOMAD_VERSION}_linux_amd64.zip https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip \
-  && unzip -d /bin nomad_${NOMAD_VERSION}_linux_amd64.zip \
-  && chmod +x /bin/nomad \
+  && apkArch="$(apk --print-arch)" && \
+      case "${apkArch}" in \
+        aarch64) nomadArch='arm64' ;; \
+        armhf) nomadArch='arm' ;; \
+        x86) nomadArch='386' ;; \
+        x86_64) nomadArch='amd64' ;; \
+        *) echo >&2 "error: unsupported architecture: ${apkArch} (see ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/)" && exit 1 ;; \
+    esac && \
+    wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
+    unzip -d /bin nomad_${NOMAD_VERSION}_linux_${consulArch}.zip && \
+  chmod +x /bin/nomad \
   && apk del .nomad-deps
 
 RUN apk add --no-cache ca-certificates curl dumb-init gnupg libcap openssl
