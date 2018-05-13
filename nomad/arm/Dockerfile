@@ -14,7 +14,7 @@ RUN adduser nomad
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
     apt-get update && \
-    apt-get install -y ca-certificates curl wget dumb-init gnupg libcap-dev openssl && \
+    apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_arm.zip && \
