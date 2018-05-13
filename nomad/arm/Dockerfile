@@ -36,7 +36,7 @@ RUN set -eux && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
 
-RUN apk add file build-base
+RUN apk add file build-base musl-utils
 RUN ldconfig -v
 RUN file /bin/nomad
 RUN ldd /bin/nomad
