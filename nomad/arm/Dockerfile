@@ -27,6 +27,7 @@ RUN set -eux && \
 # tiny smoke test to ensure the binary we downloaded runs
 
 RUN curl -fsSLR -o /usr/local/bin/su-exec https://github.com/javabean/su-exec/releases/download/v0.2/su-exec.$(dpkg --print-architecture | awk -F- '{ print $NF }')
+RUN chmod +x /usr/local/bin/su-exec
 
 RUN nomad version
 
