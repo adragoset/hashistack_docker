@@ -34,7 +34,7 @@ RUN set -eux && \
     apk del gnupg openssl && \
     rm -rf /root/.gnupg && \
 # tiny smoke test to ensure the binary we downloaded runs
-    nomad version
+    nomad 
 
 # The /nomad/data dir is used by Nomad to store state. The agent will be started
 # with /nomad/config as the configuration directory so you can add additional
