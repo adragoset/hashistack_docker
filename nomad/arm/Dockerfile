@@ -50,7 +50,7 @@ EXPOSE 4646 4647 4648 4648/udp
 
 ADD start.sh /usr/local/bin/start.sh
 
-RUN dos2unix /usr/local/bin/start.sh
+RUN dos2unix /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
 
 RUN mkdir -p ~/.ssh
 
