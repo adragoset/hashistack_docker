@@ -14,6 +14,12 @@ RUN addgroup nomad && \
 
 RUN apk update
 
+RUN apk add git build-base musl-utils
+
+RUN git clone https://github.com/NixOS/patchelf.git
+
+RUN cd patchelf && ./bootstrap.sh && ./configure && make && make install
+
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
     apk add --no-cache ca-certificates curl dumb-init gnupg libcap openssl su-exec && \
@@ -36,7 +42,7 @@ RUN set -eux && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
 
-RUN apk add file build-base musl-utils
+RUN apk add file
 RUN ldconfig -v
 RUN file /bin/nomad
 RUN ldd /bin/nomad
