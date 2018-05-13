@@ -14,11 +14,7 @@ RUN addgroup nomad && \
 
 RUN apk update
 
-RUN apk add git build-base 
-
-RUN ln -s /lib/ld-linux.so.3 /lib/ld-linux-armhf.so.3
-
-RUN cd /lib && ls
+RUN apk add git build-base libc6-compat
 
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
