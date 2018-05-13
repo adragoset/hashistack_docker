@@ -14,7 +14,9 @@ RUN addgroup nomad && \
 
 RUN apk update
 
-RUN apk add git build-base qemu
+RUN apk add git build-base 
+
+RUN ln -s /lib/ld-linux.so.3 /lib/ld-linux-armhf.so.3
 
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
