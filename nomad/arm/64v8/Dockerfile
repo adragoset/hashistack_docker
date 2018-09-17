@@ -26,7 +26,7 @@ RUN set -eux && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
 
-RUN apt-get install -y git build_essential && \
+RUN apt-get install -y git build-essential && \
     git clone git@github.com:ncopa/su-exec.git && \
     cd su-exec && \
     make -f Makefile && \
