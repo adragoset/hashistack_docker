@@ -19,7 +19,7 @@ RUN set -eux && \
     cd /tmp/build && \
     apkArch="$(dpkg --print-architecture)" && \
     case "${apkArch}" in \
-        aarch64) nomadArch='arm64' ;; \
+        arm64) nomadArch='arm64' ;; \
         armhf) nomadArch='arm' ;; \
         x86) nomadArch='386' ;; \
         x86_64) nomadArch='amd64' ;; \
