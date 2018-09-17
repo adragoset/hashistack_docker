@@ -1,8 +1,8 @@
-FROM arm32v7/debian:stretch-slim
+FROM arm32v7/debian:buster-slim
 MAINTAINER Preetha Appan <preetha@hashicorp.com> (@preetapan)
 
 # This is the release of Nomad to pull in.
-ENV NOMAD_VERSION=0.8.3
+ENV NOMAD_VERSION=0.8.4
 
 # This is the location of the releases.
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
