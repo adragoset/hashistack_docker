@@ -70,7 +70,7 @@ RUN apt-get install -y git build-essential && \
     cd su-exec && \
     make -f Makefile && \
     cp /su-exec/su-exec /usr/local/bin/su-exec && \
-    apt-get -y remove git build_essential && \
+    apt-get -y remove git build-essential && \
     chmod +x /usr/local/bin/su-exec
     
 ENTRYPOINT ["docker-entrypoint.sh"]
