@@ -17,7 +17,15 @@ RUN set -eux && \
     apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl openssh-client && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
-    wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_arm.zip && \
+    apkArch="$(apk --print-arch)" && \
+    case "${apkArch}" in \
+        aarch64) nomadArch='arm64' ;; \
+        armhf) nomadArch='arm' ;; \
+        x86) nomadArch='386' ;; \
+        x86_64) nomadArch='amd64' ;; \
+        *) echo >&2 "error: unsupported architecture: ${apkArch} (see ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/)" && exit 1 ;; \
+    esac && \
+    wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
     unzip -d /bin nomad_${NOMAD_VERSION}_linux_arm.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
