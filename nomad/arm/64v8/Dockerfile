@@ -27,7 +27,7 @@ RUN set -eux && \
 # tiny smoke test to ensure the binary we downloaded runs
 
 RUN apt-get install -y git build-essential && \
-    git clone git@github.com:ncopa/su-exec.git && \
+    git -c http.sslVerify=false clone git@github.com:ncopa/su-exec.git && \
     cd su-exec && \
     make -f Makefile && \
     cp /su-exec/su-exec /usr/local/bin/su-exec && \
