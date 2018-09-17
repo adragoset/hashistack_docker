@@ -26,8 +26,13 @@ RUN set -eux && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
 
-RUN curl -fsSLR -o -k /usr/local/bin/su-exec https://github.com/javabean/su-exec/releases/download/v0.2/su-exec.$(dpkg --print-architecture | awk -F- '{ print $NF }')
-RUN chmod +x /usr/local/bin/su-exec
+RUN apt-get install -y git build_essential && \
+    git clone git@github.com:ncopa/su-exec.git && \
+    cd su-exec && \
+    make -f Makefile && \
+    cp /su-exec/su-exec /usr/local/bin/su-exec && \
+    apt-get -y remove git build_essential && \
+    chmod +x /usr/local/bin/su-exec
 
 RUN nomad version
 
