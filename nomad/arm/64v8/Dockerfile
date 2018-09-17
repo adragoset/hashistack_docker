@@ -66,7 +66,7 @@ RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 RUN cp -R ~/.ssh /home/nomad
 
 RUN apt-get install -y git build-essential && \
-    git -c http.sslVerify=false clone git@github.com:ncopa/su-exec.git && \
+    git -c http.sslVerify=false clone https://github.com/ncopa/su-exec.git && \
     cd su-exec && \
     make -f Makefile && \
     cp /su-exec/su-exec /usr/local/bin/su-exec && \
