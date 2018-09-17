@@ -26,14 +26,6 @@ RUN set -eux && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
 
-RUN apt-get install -y git build-essential && \
-    git -c http.sslVerify=false clone git@github.com:ncopa/su-exec.git && \
-    cd su-exec && \
-    make -f Makefile && \
-    cp /su-exec/su-exec /usr/local/bin/su-exec && \
-    apt-get -y remove git build_essential && \
-    chmod +x /usr/local/bin/su-exec
-
 RUN nomad version
 
 # The /nomad/data dir is used by Nomad to store state. The agent will be started
@@ -62,6 +54,14 @@ RUN mkdir -p ~/.ssh
 RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
 RUN cp -R ~/.ssh /home/nomad
+
+RUN apt-get install -y git build-essential && \
+    git -c http.sslVerify=false clone git@github.com:ncopa/su-exec.git && \
+    cd su-exec && \
+    make -f Makefile && \
+    cp /su-exec/su-exec /usr/local/bin/su-exec && \
+    apt-get -y remove git build_essential && \
+    chmod +x /usr/local/bin/su-exec
     
 ENTRYPOINT ["docker-entrypoint.sh"]
 
