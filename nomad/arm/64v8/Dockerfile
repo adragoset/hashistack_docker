@@ -26,7 +26,7 @@ RUN set -eux && \
         *) echo >&2 "error: unsupported architecture: ${apkArch} (see ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/)" && exit 1 ;; \
     esac && \
     wget ${HASHICORP_RELEASES}/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
-    unzip -d /bin nomad_${NOMAD_VERSION}_linux_arm.zip && \
+    unzip -d /bin nomad_${NOMAD_VERSION}_linux_${nomadArch}.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
     apt-get -y remove gnupg openssl && \
