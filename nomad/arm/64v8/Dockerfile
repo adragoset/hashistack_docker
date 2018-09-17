@@ -17,7 +17,7 @@ RUN set -eux && \
     apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl openssh-client && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
-    apkArch="$(apk --print-arch)" && \
+    apkArch="$(dpkg --print-architecture)" && \
     case "${apkArch}" in \
         aarch64) nomadArch='arm64' ;; \
         armhf) nomadArch='arm' ;; \
