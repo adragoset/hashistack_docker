@@ -26,6 +26,8 @@ RUN set -eux && \
     chmod +x /bin/nomad
 # tiny smoke test to ensure the binary we downloaded runs
 
+ENV PATH=$PATH:/bin/nomad
+
 RUN nomad version
 
 # The /nomad/data dir is used by Nomad to store state. The agent will be started
