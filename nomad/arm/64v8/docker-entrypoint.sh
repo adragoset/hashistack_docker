@@ -75,14 +75,14 @@ elif nomad --help "$1" 2>&1 | grep -q "nomad $1"; then
 fi
 
 # If we are running Nomad, make sure it executes as the proper user.
-if [ "$1" = 'nomad' ]; then
+if [ "$1" = 'nomad'  ] || ; then
     # If the data or config dirs are bind mounted then chown them.
     # Note: This checks for root ownership as that's the most common case.
     if [ "$(stat -c %u /nomad/data)" != "$(id -u nomad)" ]; then
-        chown nomad:nomad /nomad/data
+        chown -r nomad:nomad /nomad/data
     fi
     if [ "$(stat -c %u /nomad/config)" != "$(id -u nomad)" ]; then
-        chown nomad:nomad /nomad/config
+        chown -r nomad:nomad /nomad/config
     fi
 
     set -- su-exec nomad:nomad "$@"
