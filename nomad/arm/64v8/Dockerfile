@@ -35,7 +35,7 @@ RUN set -eux && \
 # tiny smoke test to ensure the binary we downloaded runs
 
 #Install docker
-RUN curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+RUN curl -fsSLk https://download.docker.com/linux/debian/gpg | apt-key add - \
     && touch /etc/apt/sources.list.d/docker.list \
     && echo deb [arch=amd64] https://download.docker.com/linux/debian buster stable > /etc/apt/sources.list.d/docker.list \
     && touch /etc/apt/apt.conf.d/docker.conf \
