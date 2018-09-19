@@ -14,7 +14,7 @@ RUN adduser nomad
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
     apt-get update && \
-    apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl openssh-client && \
+    apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl openssh-client software-properties-common && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     apkArch="$(dpkg --print-architecture)" && \
@@ -36,7 +36,7 @@ RUN set -eux && \
 
 #Install docker
 RUN curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" \
     && apt-get update \
     && apt-get install docker-ce \
     && usermod -a -G docker nomad
