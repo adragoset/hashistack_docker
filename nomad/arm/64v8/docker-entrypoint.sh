@@ -95,13 +95,13 @@ if [ "$1" = 'nomad'  ]; then
     # If the data or config dirs are bind mounted then chown them.
     # Note: This checks for root ownership as that's the most common case.
     if [ "$(stat -c %u /nomad/data)" != "$(id -u nomad)" ]; then
-        chown -R nomad:nomad /nomad/data
+        chown -R root:root /nomad/data
     fi
     if [ "$(stat -c %u /nomad/config)" != "$(id -u nomad)" ]; then
-        chown -R nomad:nomad /nomad/config
+        chown -R root:root /nomad/config
     fi
 
-    set -- su-exec nomad:nomad "$@"
+    set -- su-exec root:root "$@"
 fi
 
 exec "$@"
