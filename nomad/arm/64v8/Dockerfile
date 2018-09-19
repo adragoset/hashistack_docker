@@ -39,7 +39,7 @@ RUN curl -fsSLk https://download.docker.com/linux/debian/gpg | apt-key add - \
     && touch /etc/apt/sources.list.d/docker.list \
     && echo deb [arch=arm64] https://download.docker.com/linux/debian buster stable > /etc/apt/sources.list.d/docker.list \
     && apt-get update -o Acquire::https::download.docker.com::Verify-Peer=false \
-    && apt-get install docker-ce \
+    && apt-get install -y docker-ce \
     && usermod -a -G docker nomad
 
 ENV PATH=$PATH:/bin/nomad
