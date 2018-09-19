@@ -14,7 +14,7 @@ RUN adduser nomad
 # Set up certificates, base tools, and Nomad.
 RUN set -eux && \
     apt-get update && \
-    apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl openssh-client software-properties-common && \
+    apt-get install -y ca-certificates curl wget unzip dumb-init gnupg libcap-dev openssl openssh-client dnsutils && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     apkArch="$(dpkg --print-architecture)" && \

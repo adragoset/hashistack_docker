@@ -37,6 +37,22 @@ if [ -n "$NOMAD_CLIENT_INTERFACE" ]; then
   echo "==> Found address '$NOMAD_CLIENT_ADDRESS' for interface '$NOMAD_CLIENT_INTERFACE', setting client option..."
 fi
 
+consul_ip=`dig +short consul.service.consul`
+if [ "$WAIT_FOR_CONSUL" = true ]; then
+    echo "Waiting for consul to be resolvable"
+    until [ -n "$consul_ip" ]; do
+        echo "Consul Unavailable waiting 5..."
+        sleep 5
+    done
+    echo "Consul resolved"
+fi
+
+
+DOCKER_GID=$(stat -c '%g' '/var/run/docker.sock')
+echo "docker group: ${DOCKER_GID}"
+groupadd -for -g ${DOCKER_GID} hostdocker
+usermod -aG hostdocker nomad
+
 # NOMAD_DATA_DIR is exposed as a volume for possible persistent storage. The
 # NOMAD_CONFIG_DIR isn't exposed as a volume but you can compose additional
 # config files in there if you use this image as a base, or use NOMAD_LOCAL_CONFIG
