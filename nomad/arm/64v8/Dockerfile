@@ -73,12 +73,12 @@ RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
 RUN cp -R ~/.ssh /home/nomad
 
-RUN apt-get install -y git build-essential && \
+RUN apt-get install -y build-essential && \
     git -c http.sslVerify=false clone https://github.com/ncopa/su-exec.git && \
     cd su-exec && \
     make -f Makefile && \
     cp /su-exec/su-exec /usr/local/bin/su-exec && \
-    apt-get -y remove git build-essential && \
+    apt-get -y remove build-essential && \
     chmod +x /usr/local/bin/su-exec
     
 ENTRYPOINT ["docker-entrypoint.sh"]
