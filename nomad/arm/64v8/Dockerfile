@@ -39,7 +39,8 @@ RUN curl -fsSLk https://download.docker.com/linux/debian/gpg | apt-key add - \
     && touch /etc/apt/sources.list.d/docker.list \
     && echo deb [arch=amd64] https://download.docker.com/linux/debian buster stable > /etc/apt/sources.list.d/docker.list \
     && touch /etc/apt/apt.conf.d/docker.conf \
-    && echo Acquire::https::download.docker.com::Verify-Peer "false"; Acquire::https::download.docker.com::Verify-Host "false"; > /etc/apt/apt.conf.d/docker.conf \
+    && printf 'Acquire::https::download.docker.com::Verify-Peer "false";\n' > /etc/apt/apt.conf.d/docker.conf \
+    && printf 'Acquire::https::download.docker.com::Verify-Host "false";\n' > /etc/apt/apt.conf.d/docker.conf \
     && apt-get update \
     && apt-get install docker-ce \
     && usermod -a -G docker nomad
