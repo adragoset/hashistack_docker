@@ -6,7 +6,7 @@ steps:
         username: devopsintralox
         password-env: DOCKER_LOGIN_PASSWORD
     agents:
-      genpurpose: "true"
+      arch: "x86"
 
   - label: ':hammer: Build Docker Community Overloads Arm64'
     command: './build_arm64.sh'
