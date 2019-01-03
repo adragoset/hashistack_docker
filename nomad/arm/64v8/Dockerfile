@@ -1,8 +1,8 @@
 FROM arm64v8/debian:buster-slim
-MAINTAINER Preetha Appan <preetha@hashicorp.com> (@preetapan)
+MAINTAINER Alexander Dragoset <a.dragoset@gmail.com> (@adragose)
 
 # This is the release of Nomad to pull in.
-ENV NOMAD_VERSION=0.8.4
+ENV NOMAD_VERSION=0.8.6
 
 # This is the location of the releases.
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
