@@ -62,7 +62,7 @@ EXPOSE 4646 4647 4648 4648/udp
 # Nomad doesn't need root privileges so we run it as the nomad user from the
 # entry point script. The entry point script also uses dumb-init as the top-level
 # process to reap any zombie processes created by Nomad sub-processes.
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY nomad/arm/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 RUN chmod 777 /usr/local/bin/docker-entrypoint.sh \
     && ln -s /usr/local/bin/docker-entrypoint.sh /
