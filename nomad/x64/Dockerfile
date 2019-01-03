@@ -56,11 +56,9 @@ VOLUME /nomad/data
 
 EXPOSE 4646 4647 4648 4648/udp
 
-ADD /docker_nomad/start.sh /usr/local/bin/start.sh
+ADD nomad/x64/start.sh /usr/local/bin/start.sh
 
 RUN dos2unix /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
-
-ADD docker_nomad/version .
 
 RUN mkdir -p ~/.ssh
 

@@ -1,0 +1,18 @@
+steps:
+  - label: ':hammer: Build Docker Community Overloads'
+    command: './build.sh'
+    plugins:
+      docker-login#v2.0.0:
+        username: devopsintralox
+        password-env: DOCKER_LOGIN_PASSWORD
+    agents:
+      genpurpose: "true"
+
+  - label: ':hammer: Build Docker Community Overloads Arm64'
+    command: './build_arm64.sh'
+    plugins:
+      docker-login#v2.0.0:
+        username: devopsintralox
+        password-env: DOCKER_LOGIN_PASSWORD
+    agents:
+      arch: "arm64"
