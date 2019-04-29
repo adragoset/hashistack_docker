@@ -2,7 +2,7 @@ FROM arm32v7/debian:buster-slim
 MAINTAINER Alexander Dragoset <a.dragoset@gmail.com> (@adragose)
 
 # This is the release of Nomad to pull in.
-ENV NOMAD_VERSION=0.9.0
+ENV NOMAD_VERSION=0.9.1
 
 # This is the location of the releases.
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
