@@ -8,7 +8,7 @@ ENV WAIT_FOR_CONSUL false
 
 RUN apk update
 
-RUN apk add shadow docker dos2unix git openssh-client bind-tools --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
+RUN apk add shadow docker dos2unix git openssh-client bind-tools wget --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
 RUN addgroup -g 1100 nomad && \
     adduser -S -G nomad -u 1100 nomad
@@ -34,9 +34,9 @@ RUN export GNUPGHOME="$(mktemp -d)" && \
 ENV NOMAD_VERSION 0.9.1
 
 RUN set -x \
-  && apk --update add --no-cache --virtual .nomad-deps gnupg curl wget \
+  && apk --update add --no-cache --virtual .nomad-deps gnupg curl \
   && cd /tmp \
-  && wget -c http://usdl-artifactory.dxcluster.prod.laitram.loc/artifactory/nomad_releases/offline/${NOMAD_VERSION}/linux_amd64.zip -O nomad_${NOMAD_VERSION}_linux_amd64.zip \
+  && curl -L -o nomad_${NOMAD_VERSION}_linux_amd64.zip http://usdl-artifactory.dxcluster.prod.laitram.loc/artifactory/nomad_releases/offline/v${NOMAD_VERSION}/linux_amd64.zip \
   && unzip -d /bin nomad_${NOMAD_VERSION}_linux_amd64.zip \
   && chmod +x /bin/nomad \
   && apk del .nomad-deps
