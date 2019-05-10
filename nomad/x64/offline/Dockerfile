@@ -34,9 +34,9 @@ RUN export GNUPGHOME="$(mktemp -d)" && \
 ENV NOMAD_VERSION 0.9.1
 
 RUN set -x \
-  && apk --update add --no-cache --virtual .nomad-deps gnupg curl \
+  && apk --update add --no-cache --virtual .nomad-deps gnupg curl wget \
   && cd /tmp \
-  && curl -L -o nomad_${NOMAD_VERSION}_linux_amd64.zip http://usdl-artifactory.dxcluster.prod.laitram.loc/artifactory/nomad_releases/offline/${NOMAD_VERSION}/linux_amd64.zip \
+  && wget -c http://usdl-artifactory.dxcluster.prod.laitram.loc/artifactory/nomad_releases/offline/${NOMAD_VERSION}/linux_amd64.zip -O nomad_${NOMAD_VERSION}_linux_amd64.zip \
   && unzip -d /bin nomad_${NOMAD_VERSION}_linux_amd64.zip \
   && chmod +x /bin/nomad \
   && apk del .nomad-deps
