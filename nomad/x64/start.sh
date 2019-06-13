@@ -85,5 +85,5 @@ if [ "$1" = 'nomad' ]; then
 
     set -- gosu root "$@"
 fi
-
+echo "Start.sh starting nomad: $@"
 exec "$@"
