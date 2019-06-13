@@ -17,6 +17,7 @@ NOMAD_DATA_DIR=/nomad/data
 NOMAD_CONFIG_DIR=/nomad/config
 
 consul_ip=`dig +short consul.service.consul`
+echo "Start.sh starting nomad:"
 if [ "$WAIT_FOR_CONSUL" = true ]; then
     echo "Waiting for consul to be resolvable"
     until [ -n "$consul_ip" ]; do
@@ -85,5 +86,5 @@ if [ "$1" = 'nomad' ]; then
 
     set -- gosu root "$@"
 fi
-echo "Start.sh starting nomad: $@"
+echo "Start.sh executing nomad: $@"
 exec "$@"
