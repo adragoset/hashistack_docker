@@ -16,11 +16,9 @@ set -e
 NOMAD_DATA_DIR=/nomad/data
 NOMAD_CONFIG_DIR=/nomad/config
 
-consul_ip=`dig +short consul.service.consul`
-echo "Start.sh starting nomad:"
 if [ "$WAIT_FOR_CONSUL" = true ]; then
     echo "Waiting for consul to be resolvable"
-    until [ -n "$consul_ip" ]; do
+    until [ $(dig consul.service.consul +short | grep -Eo '[0-9\.]{7,15}' | head -1) > 0 ]; do
         echo "Consul Unavailable waiting 5..."
         sleep 5
     done
