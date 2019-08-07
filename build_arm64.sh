@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker build -t devopsintralox/nomad:v0.9.3-arm64v8 --network=cluster_network -f nomad/arm/64v8/Dockerfile .
-docker push devopsintralox/nomad:v0.9.3-arm64v8
-docker build -t devopsintralox/consul:v1.4.4-arm64v8 --network=cluster_network -f consul/arm/64v8/Dockerfile .
-docker push devopsintralox/consul:v1.4.4-arm64v8
+docker build -t devopsintralox/nomad:v0.9.4-arm64v8 --network=cluster_network -f nomad/arm/64v8/Dockerfile .
+docker push devopsintralox/nomad:v0.9.4-arm64v8
+docker build -t devopsintralox/consul:v1.5.2-arm64v8 --network=cluster_network -f consul/arm/64v8/Dockerfile .
+docker push devopsintralox/consul:v1.5.2-arm64v8
