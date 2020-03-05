@@ -2,7 +2,7 @@ FROM arm32v6/alpine:3.8
 MAINTAINER Preetha Appan <preetha@hashicorp.com> (@preetapan)
 
 # This is the release of Consul to pull in.
-ENV CONSUL_VERSION=1.5.2
+ENV CONSUL_VERSION=1.6.4
 
 # This is the location of the releases.
 ENV HASHICORP_RELEASES=https://releases.hashicorp.com
