@@ -9,7 +9,7 @@ ENV WAIT_FOR_CONSUL false
 RUN apt-get update && \
 apt-get install -y docker dos2unix git openssh-client dnsutils libc6 dpkg curl gosu gnupg libcap2 openssl ca-certificates dumb-init
 
-RUN addgroup -g 1100 nomad && \
+RUN addgroup --gid 1100 nomad && \
     adduser -S -G nomad -u 1100 nomad
 
 RUN curl -L -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_amd64
