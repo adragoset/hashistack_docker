@@ -6,6 +6,9 @@ ENV GOSU_VERSION 1.10
 ENV DUMB_INIT_VERSION 1.2.0
 ENV WAIT_FOR_CONSUL false
 
+RUN touch /etc/apt/sources.list.d/shadow.list && \
+echo 'https://anonscm.debian.org' > /etc/apt/sources.list.d/shadow.list
+
 RUN apt-get update && \
 apt-get install -y shadow docker dos2unix git openssh-client dnsutils glibc dpkg curl gosu gnupg libcap openssl ca-certificates dumb-init
 
