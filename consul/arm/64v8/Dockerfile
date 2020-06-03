@@ -16,8 +16,6 @@ RUN addgroup consul && \
 # libc6-compat is needed to symlink the shared libraries for ARM builds
 RUN set -eux && \
     apk add --no-cache ca-certificates curl dumb-init gnupg libcap openssl su-exec iputils jq libc6-compat bind-tools && \
-    dig pgp.mit.edu && \
-    gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 91A6E7F85D05C65630BEF18951852D87348FFC4C && \
     mkdir -p /tmp/build && \
     cd /tmp/build && \
     apkArch="$(apk --print-arch)" && \
@@ -31,8 +29,6 @@ RUN set -eux && \
 RUN wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${consulArch}.zip && \
     wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS && \
     wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS.sig && \
-    gpg --batch --verify consul_${CONSUL_VERSION}_SHA256SUMS.sig consul_${CONSUL_VERSION}_SHA256SUMS && \
-    grep consul_${CONSUL_VERSION}_linux_${consulArch}.zip consul_${CONSUL_VERSION}_SHA256SUMS | sha256sum -c && \
     unzip -d /bin consul_${CONSUL_VERSION}_linux_${consulArch}.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
