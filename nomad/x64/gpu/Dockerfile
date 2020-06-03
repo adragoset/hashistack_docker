@@ -7,7 +7,7 @@ ENV DUMB_INIT_VERSION 1.2.0
 ENV WAIT_FOR_CONSUL false
 
 RUN apt-get update && \
-apt-get install -y docker dos2unix git openssh-client dnsutils libc6 dpkg curl gosu gnupg libcap2 openssl ca-certificates dumb-init
+apt-get install -y docker dos2unix git openssh-client dnsutils libc6 dpkg curl gosu gnupg libcap2 openssl ca-certificates dumb-init unzip
 
 RUN addgroup --gid 1100 nomad && \
     adduser --ingroup nomad --uid 1100 nomad
