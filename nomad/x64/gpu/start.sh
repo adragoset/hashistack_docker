@@ -40,6 +40,7 @@ fi
 
 # If the user is trying to run Nomad directly with some arguments, then
 # pass them to Nomad.
+echo "${1:0:1}"
 if [ "${1:0:1}" = '-' ]; then
     set -- nomad "$@"
 fi
