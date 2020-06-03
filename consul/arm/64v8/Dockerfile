@@ -25,10 +25,8 @@ RUN set -eux && \
         x86) consulArch='386' ;; \
         x86_64) consulArch='amd64' ;; \
         *) echo >&2 "error: unsupported architecture: ${apkArch} (see ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/)" && exit 1 ;; \
-    esac
-RUN wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${consulArch}.zip && \
-    wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS && \
-    wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_SHA256SUMS.sig && \
+    esac && \
+    wget ${HASHICORP_RELEASES}/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_${consulArch}.zip && \
     unzip -d /bin consul_${CONSUL_VERSION}_linux_${consulArch}.zip && \
     cd /tmp && \
     rm -rf /tmp/build && \
