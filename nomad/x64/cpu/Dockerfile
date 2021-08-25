@@ -24,7 +24,7 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" && \
     curl -L -o /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" && \
     curl -L -o /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"
 RUN export GNUPGHOME="$(mktemp -d)" && \
-    gpg --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 && \
+    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 && \
     gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu && \
     rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc && \
     chmod +x /usr/local/bin/gosu && \
@@ -40,7 +40,7 @@ RUN set -x \
   && curl -L -o nomad_${NOMAD_VERSION}_SHA256SUMS      https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_SHA256SUMS \
   && curl -L -o nomad_${NOMAD_VERSION}_SHA256SUMS.sig  https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_SHA256SUMS.sig \
   && export GNUPGHOME="$(mktemp -d)" \
-  && gpg --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 72D7468F \
+  && gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 72D7468F \
   && gpg --batch --verify nomad_${NOMAD_VERSION}_SHA256SUMS.sig nomad_${NOMAD_VERSION}_SHA256SUMS \
   && grep nomad_${NOMAD_VERSION}_linux_amd64.zip nomad_${NOMAD_VERSION}_SHA256SUMS | sha256sum -c \
   && unzip -d /bin nomad_${NOMAD_VERSION}_linux_amd64.zip \
