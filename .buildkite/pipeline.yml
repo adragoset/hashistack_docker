@@ -1,6 +1,15 @@
 steps:
-  - label: ':hammer: Build Docker Community Overloads'
+  - label: ':hammer: Build Nomad x64'
     command: './build.sh'
+    plugins:
+      docker-login#v2.0.0:
+        username: devopsintralox
+        password-env: DOCKER_LOGIN_PASSWORD
+    agents:
+      arch: "x86"
+      
+  - label: ':hammer: Build Nomad-gpu x64'
+    command: './build-gpu.sh'
     plugins:
       docker-login#v2.0.0:
         username: devopsintralox
