@@ -23,7 +23,7 @@ RUN set -x \
   && curl -L -o nomad_${NOMAD_VERSION}_SHA256SUMS      https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_SHA256SUMS \
   && curl -L -o nomad_${NOMAD_VERSION}_SHA256SUMS.sig  https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_SHA256SUMS.sig \
   && export GNUPGHOME="$(mktemp -d)" \
-  && gpg --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 72D7468F \
+  && gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 72D7468F \
   && gpg --batch --verify nomad_${NOMAD_VERSION}_SHA256SUMS.sig nomad_${NOMAD_VERSION}_SHA256SUMS \
   && grep nomad_${NOMAD_VERSION}_linux_amd64.zip nomad_${NOMAD_VERSION}_SHA256SUMS | sha256sum -c \
   && unzip -d /bin nomad_${NOMAD_VERSION}_linux_amd64.zip \
