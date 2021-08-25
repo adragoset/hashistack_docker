@@ -15,7 +15,7 @@ RUN addgroup --gid 1100 nomad && \
 RUN curl -L -o /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_amd64
 RUN chmod +x /usr/local/bin/dumb-init
 
-ENV NOMAD_VERSION 0.10.4
+ENV NOMAD_VERSION 1.1.3
 
 RUN set -x \
   && cd /tmp \
