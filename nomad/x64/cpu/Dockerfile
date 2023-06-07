@@ -31,7 +31,7 @@ RUN export GNUPGHOME="$(mktemp -d)" && \
     gosu nobody true && \
     apk del .gosu-deps
 
-ENV NOMAD_VERSION 1.5.3
+ENV NOMAD_VERSION 1.5.6
 
 RUN set -x \
   && apk --update add --no-cache --virtual .nomad-deps gnupg curl \
